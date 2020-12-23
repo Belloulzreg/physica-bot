@@ -32,7 +32,7 @@ client.on('message', msg => {
         return msg.channel.send(`This is the list of available commands:\n 
         *!physica help* : returns the available commands.\n
         *!physica youtube* : returns a list of useful youtube channels.\n
-        *!physica magazine: returns links for the club's mazgines*`);
+        *!physica magazine* : returns links for the club's mazgines`);
       }
       else if(args[0]==='youtube'){
           return msg.channel.send(
