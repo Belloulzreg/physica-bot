@@ -16,7 +16,7 @@ client.login(process.env.DISCORDTOKEN);
 
 client.on('message', msg => {
   
-  if(msg.author.id ===`${process.env.ME}`){
+  if(msg.author.id ===`${process.env.BELLOU}`){
     msg.react(`😍`);
   }
   if (!msg.content.startsWith(config.prefix) || msg.author.bot) return;
