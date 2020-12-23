@@ -46,7 +46,7 @@ client.on('message', msg => {
         msg.channel.send(msg.author.avatarURL());
       }
       else if(args[0]==='magazine'){
-        msg.channel.send(`${study.phymag.first}\n${study.phymag.second}`);
+        msg.channel.send(`First edition: ${study.phymag.first}\nSecond edition: ${study.phymag.second}`);
       }
       else{msg.channel.send(`Sorry ${msg.author.username}the command *${msg.content}* doesn't exsit`)}
     
