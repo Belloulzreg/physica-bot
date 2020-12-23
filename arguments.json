@@ -13,6 +13,9 @@
     },
     "np":{
         "link":"https://www.youtube.com/user/numberphile"
+    },
+    "phymag":{
+        "first":"https://fphy.usthb.dz/IMG/pdf/PHYSICA%20magazine.pdf",
+        "second":"https://fphy.usthb.dz/IMG/pdf/PHYSICA-magazine-No2.pdf"
     }
-    
 }
