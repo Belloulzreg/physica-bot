@@ -105,9 +105,10 @@ client.on('message', msg => {
       else if(args[0]==='magazine'){
         msg.channel.send(magazine);
       }
-    
+      const sorry = new Discord.MessageEmbed()
+      .setAuthor(`Sorry ${msg.author.username} The command ${msg.content} doesn't exist`);
+      msg.channel.send(sorry);
 
-      else{msg.channel.send(`Sorry ${msg.author.username}the command *${msg.content}* doesn't exsit`)}
     
     }
     
