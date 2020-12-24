@@ -14,6 +14,62 @@ client.on('ready', () => {
 
 client.login(process.env.DISCORDTOKEN);
 
+const help = new Discord.MessageEmbed()
+.setTitle('Help')
+.setDescription('these are the available commands that you can use')
+.setColor('#ff5733')
+.addField('!physica help', 'returns the available commands', false)
+.addField('!physica links', 'returns a list of useful youtube channels', false)
+.addField('!physica magazine', `returns links for the club's mazgines`, false)
+.addField('!physica me', `returns your user name and avatar`, false)
+.setThumbnail('https://i.pinimg.com/originals/c2/8d/d7/c28dd7378e2426b6a5b56fbaf91c7434.jpg')
+.setTimestamp()
+const userfulLinks = new Discord.MessageEmbed()
+.setTitle('Useful Links')
+.setDescription('Here are few links that you may find useful')
+.setColor('#ff5733')
+.addField('3blue1brown', study.tbob.link, false)
+.addField('Royal Institue', study.ri.link, false)
+.addField(' MIT OpenCourseWare', study.mit.link, false)
+.addField(' Numberphile', study.np.link, false)
+.addField('Khan Acedmey',study.ka.link, false)
+.setThumbnail('https://i.pinimg.com/originals/c2/8d/d7/c28dd7378e2426b6a5b56fbaf91c7434.jpg')
+.setTimestamp()
+
+
+const foo = new Discord.MessageEmbed()
+.setColor('#ff5733')
+.setDescription('Wsh kho?');
+
+
+const magazine = new Discord.MessageEmbed()
+.setColor('#ff5733')
+.addFields(
+  {
+    name:"First Edition", value: study.phymag.first
+  },
+  {
+    name:'Second Edition', value:study.phymag.second
+  }
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 client.on('message', msg => {
   
   if(msg.author.id ===`${process.env.BELLOU}`){
@@ -29,26 +85,28 @@ client.on('message', msg => {
         return msg.channel.send(`You didn't provide any arguments, ${msg.author}!`);
       }
       else if (args[0] === 'help') {
-        return msg.channel.send(`This is the list of available commands:\n 
-        *!physica help* : returns the available commands.\n
-        *!physica youtube* : returns a list of useful youtube channels.\n
-        *!physica magazine* : returns links for the club's mazgines`);
+        return msg.channel.send(help);
       }
-      else if(args[0]==='youtube'){
-          return msg.channel.send(
-            `Here are some useful Youtube channels\n${study.tbob.link}\n${study.ri.link}\n${study.mit.link}\n${study.ka.link}\n${study.np.link}        
-            `
-          )
+      else if(args[0]==='links'){
+          return msg.channel.send(userfulLinks);
       }
       else if (args[0] === 'foo') {
-        return msg.channel.send('hello broa');
+
+        return msg.channel.send(foo);
       }
-      else if(args[0] ==='my-avatar'){
-        msg.channel.send(msg.author.avatarURL());
+      else if(args[0] ==='me'){
+        const myInfo = new Discord.MessageEmbed()
+        .setColor('#ff5733')
+        .setAuthor(`${msg.author.username}`)
+        .setImage(msg.author.avatarURL());
+        return msg.channel.send(myInfo);
+        // msg.channel.send(msg.author.avatarURL());
       }
       else if(args[0]==='magazine'){
-        msg.channel.send(`Here are the links for Physica Magazines: \nFirst edition: ${study.phymag.first}\nSecond edition: ${study.phymag.second}`);
+        msg.channel.send(magazine);
       }
+    
+
       else{msg.channel.send(`Sorry ${msg.author.username}the command *${msg.content}* doesn't exsit`)}
     
     }
