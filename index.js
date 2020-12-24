@@ -106,6 +106,7 @@ client.on('message', msg => {
         msg.channel.send(magazine);
       }
       const sorry = new Discord.MessageEmbed()
+      .setColor('#ff5733')
       .setAuthor(`Sorry ${msg.author.username} The command ${msg.content} doesn't exist`);
       msg.channel.send(sorry);
 
