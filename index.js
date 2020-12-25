@@ -111,8 +111,7 @@ client.on('message', msg => {
         msg.channel.send(magazine);
       }
       else if(args[0]=='picture'){
-        
-        getData();
+          return getData();
         }
       }
       else{
