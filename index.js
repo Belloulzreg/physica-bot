@@ -22,6 +22,7 @@ const help = new Discord.MessageEmbed()
 .addField('!physica links', 'returns a list of useful youtube channels', false)
 .addField('!physica magazine', `returns links for the club's mazgines`, false)
 .addField('!physica me', `returns your user name and avatar`, false)
+.addField('!physica picture', 'return the Astronomy Picture of the Day')
 .setThumbnail('https://i.pinimg.com/originals/c2/8d/d7/c28dd7378e2426b6a5b56fbaf91c7434.jpg')
 .setTimestamp()
 const userfulLinks = new Discord.MessageEmbed()
@@ -53,15 +54,19 @@ const magazine = new Discord.MessageEmbed()
   }
 );
 
+let nsaUrl = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASATOKEN}`
+        async function getData(){
+          return await fetch(nsaUrl).then(res=>res.json().then(data=>{
+            msg.channel.send(
+              new Discord.MessageEmbed()
+              .setTitle(data.title)
+              .setDescription(data.explanation)
+              .setImage(data.url)
+              .setColor('#ff5733')
 
-
-
-
-
-
-
-
-
+            );
+          }));
+        } 
 
 
 
@@ -80,7 +85,7 @@ client.on('message', msg => {
   const args = msg.content.slice(config.prefix.length).trim().split(' ');
   const command = args.shift().toLowerCase();
   
-    if (command === 'physica' && msg.channel.id === "791421687522263060") {
+    if (command === 'physica' /*&& msg.channel.id === "791421687522263060"*/) {
       if (!args.length) {
         return msg.channel.send(`You didn't provide any arguments, ${msg.author}!`);
       }
@@ -105,10 +110,17 @@ client.on('message', msg => {
       else if(args[0]==='magazine'){
         msg.channel.send(magazine);
       }
+      else if(args[0]=='picture'){
+        
+        getData();
+        }
+      }
+      else{
       const sorry = new Discord.MessageEmbed()
       .setColor('#ff5733')
       .setAuthor(`Sorry ${msg.author.username} The command ${msg.content} doesn't exist`);
       msg.channel.send(sorry);
+      }
 
     
     }
@@ -118,7 +130,7 @@ client.on('message', msg => {
 
       
     
-    }
+    
         
   
 
