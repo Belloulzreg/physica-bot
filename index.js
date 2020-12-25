@@ -115,11 +115,14 @@ client.on('message', msg => {
         return getData();
         }
       }
+      // else{
+      // const sorry = new Discord.MessageEmbed()
+      // .setColor('#ff5733')
+      // .setAuthor(`Sorry ${msg.author.username} The command ${msg.content} doesn't exist`);
+      // return msg.channel.send(sorry);
+      // }
       else{
-      const sorry = new Discord.MessageEmbed()
-      .setColor('#ff5733')
-      .setAuthor(`Sorry ${msg.author.username} The command ${msg.content} doesn't exist`);
-      return msg.channel.send(sorry);
+        msg.channel.send('sorry sinpai');
       }
 
     
