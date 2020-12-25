@@ -117,7 +117,7 @@ client.on('message', msg => {
         else{
           const sorry = new Discord.MessageEmbed()
           .setColor('#ff5733')
-          .setAuthor(`Sorry ${msg.author.username} The command ${msg.content} doesn't exist`);
+          .setAuthor(`Sorry ${msg.author.username} The command ${msg.content} doesn't exist \n use *!physica help* to see the available commands`);
           return msg.channel.send(sorry);
           }
       }
