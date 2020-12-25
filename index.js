@@ -54,19 +54,7 @@ const magazine = new Discord.MessageEmbed()
   }
 );
 
-let nsaUrl = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASATOKEN}`
-        async function getData(){
-          return await fetch(nsaUrl).then(res=>res.json().then(data=>{
-            msg.channel.send(
-              new Discord.MessageEmbed()
-              .setTitle(data.title)
-              .setDescription(data.explanation)
-              .setImage(data.url)
-              .setColor('#ff5733')
 
-            );
-          }));
-        } 
 
 
 
@@ -111,7 +99,20 @@ client.on('message', msg => {
         msg.channel.send(magazine);
       }
       else if(args[0]=='picture'){
-          return getData();
+      let nsaUrl = `https://api.nasa.gov/planetary/apod?api_key=${process.env.NASATOKEN}`
+        async function getData(){
+          return await fetch(nsaUrl).then(res=>res.json().then(data=>{
+            msg.channel.send(
+              new Discord.MessageEmbed()
+              .setTitle(data.title)
+              .setDescription(data.explanation)
+              .setImage(data.url)
+              .setColor('#ff5733')
+
+            );
+          }));
+        }    
+        return getData();
         }
       }
       else{
