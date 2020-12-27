@@ -67,14 +67,14 @@ client.on('message', msg => {
       const year = args[1];
       const today = new Date();
 
-      if (year = '') {
+      if (year == '') {
         return msg.channel.send(
           new Discord.MessageEmbed().setColor('#FF0000')
             .setAuthor(`Please add a year to the command`)
         )
 
       }
-      if (year < 1901) {
+      else if (year < 1901) {
         return msg.channel.send(
           new Discord.MessageEmbed().setColor('#FF0000')
             .setAuthor(`${year} is not a valid, year try another year`)
@@ -87,29 +87,31 @@ client.on('message', msg => {
             .setAuthor(`How is the future?`)
         );
       }
-      async function nobel(year) {
-        return await fetch(`http://api.nobelprize.org/2.0/nobelPrize/phy/${year}`)
-          .then(res => res.json().then(data => {
-            const names = [];
-            let name;
-            const nobelPrize = new Discord.MessageEmbed();
-            name = data[0].laureates;
-            name.map(item => {
-              nobelPrize.addField(`${item.knownName.en}`, `${item.motivation.en}`)
-            })
-            nobelPrize.setColor('#FF0000')
-              .setTitle(`${data[0].categoryFullName.en} Laureates, ${year}`)
-              .setTimestamp();
+      else {
+        async function nobel(year) {
+          return await fetch(`http://api.nobelprize.org/2.0/nobelPrize/phy/${year}`)
+            .then(res => res.json().then(data => {
+              const names = [];
+              let name;
+              const nobelPrize = new Discord.MessageEmbed();
+              name = data[0].laureates;
+              name.map(item => {
+                nobelPrize.addField(`${item.knownName.en}`, `${item.motivation.en}`)
+              })
+              nobelPrize.setColor('#FF0000')
+                .setTitle(`${data[0].categoryFullName.en} Laureates, ${year}`)
+                .setTimestamp();
 
-            return msg.channel.send(nobelPrize);
-
-
-
-
-          }));
+              return msg.channel.send(nobelPrize);
 
 
-      }; return nobel(year);
+
+
+            }));
+
+
+        }; return nobel(year);
+      }
     }
     else {
       return msg.channel.send(sorry(msg.author.username, msg.content));
