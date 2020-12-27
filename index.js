@@ -70,7 +70,7 @@ client.on('message', msg => {
       if (year = '') {
         return msg.channel.send(
           new Discord.MessageEmbed().setColor('#FF0000')
-            .setAuthor(`Please enter a year`)
+            .setAuthor(`Please add a year to the command`)
         )
 
       }
