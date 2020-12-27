@@ -66,8 +66,14 @@ client.on('message', msg => {
     else if (args[0] === `nobel` && typeof (args[1] === 'number')) {
       const year = args[1];
       const today = new Date();
-
-      if (year == '') {
+      const notAwarded = ['1916', '1931', '1934', '1940', '1941', '1942'];
+      if(notAwarded.includes(year)){
+        return msg.channel.send(
+          new Discord.MessageEmbed().setColor('#FF0000')
+            .setAuthor(`There have been six years for which the Nobel Prize in Physics was not awarded (1916, 1931, 1934, 1940–1942).`)
+        )
+      }
+       else if (year == '') {
         return msg.channel.send(
           new Discord.MessageEmbed().setColor('#FF0000')
             .setAuthor(`Please add a year to the command`)
@@ -87,6 +93,7 @@ client.on('message', msg => {
             .setAuthor(`How is the future?`)
         );
       }
+    
       else {
         async function nobel(year) {
           return await fetch(`http://api.nobelprize.org/2.0/nobelPrize/phy/${year}`)
@@ -110,9 +117,9 @@ client.on('message', msg => {
             }));
 
 
-        }; return nobel(year);
+        }; return nobel(year)
       }
-    }
+  }
     else {
       return msg.channel.send(sorry(msg.author.username, msg.content));
     }
