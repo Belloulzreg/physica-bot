@@ -67,6 +67,13 @@ client.on('message', msg => {
       const year = args[1];
       const today = new Date();
 
+      if (year = '') {
+        return msg.channel.send(
+          new Discord.MessageEmbed().setColor('#FF0000')
+            .setAuthor(`Please enter a year`)
+        )
+
+      }
       if (year < 1901) {
         return msg.channel.send(
           new Discord.MessageEmbed().setColor('#FF0000')
